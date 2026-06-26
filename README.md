@@ -1,101 +1,111 @@
-# Biomedical AI — Conference & Deadline Tracker
+<div align="center">
 
-A self-updating dashboard for biomedical AI / medical imaging conferences and
-workshops. It recomputes deadline countdowns every day, flags broken links, and
-surfaces newly discovered venues for you to review — all hosted free on GitHub
-Pages, no server to run.
+# 🧠 Biomedical AI Conference & Deadline Tracker
 
-![status: card + table dashboard](https://img.shields.io/badge/dashboard-GitHub%20Pages-blue)
+### Never miss a MICCAI, ISBI, MIDL, or SPIE deadline again.
 
-## How it works
+A self-updating dashboard that tracks submission deadlines for **medical imaging, healthcare, and biomedical AI** conferences — with live countdowns, smart alerts, and automatic broken-link detection. Zero servers, zero maintenance, 100% free.
+
+[**🚀 View the live dashboard →**](https://akshatha-mohan.github.io/biomedical-ai-conference-tracker/)
+
+[![Daily auto-update](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker/actions/workflows/update.yml/badge.svg)](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker/actions/workflows/update.yml)
+[![GitHub Pages](https://img.shields.io/badge/dashboard-live-success?logo=github)](https://akshatha-mohan.github.io/biomedical-ai-conference-tracker/)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contribute-a-conference)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/Akshatha-Mohan/biomedical-ai-conference-tracker?style=social)](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker/stargazers)
+
+⭐ **If this saves you from a missed deadline, please [star the repo](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker) — it helps other researchers find it.**
+
+</div>
+
+---
+
+## Why this exists
+
+If you do research in medical imaging or health AI, your deadlines are scattered across a dozen conference sites that redesign their URLs every year. Generic deadline trackers bury MICCAI under hundreds of NLP and robotics venues, and the links rot the moment a new edition goes live.
+
+This is a focused, **biomedical-only** tracker that you own. It lives in a GitHub repo, deploys itself to GitHub Pages, and refreshes every single day — so the countdowns are always right and dead links get flagged automatically instead of surprising you the week before a deadline.
+
+## ✨ Features
+
+- **🗓️ Live countdowns & status** — every venue shows exact days-left and an at-a-glance status: `Upcoming`, `Far Out`, `TBD`, or `Past Due`, color-coded like a traffic light.
+- **🔔 Deadline alerts** — built-in 7-day and 14-day alert windows surface what's urgent right now.
+- **🔗 Automatic broken-link detection** — every official URL is tested daily; dead links get a ⚠ badge and a count on the dashboard, so the data never silently rots.
+- **🔍 New-venue discovery** — a daily best-effort scan of community deadline datasets surfaces biomedical conferences you're not tracking yet, in a separate "review & add" panel.
+- **🎯 Confidence flags** — each deadline is tagged `confirmed`, `estimated`, or `tbd`, so you always know what to double-check before relying on it.
+- **🔎 Search, sort & filter** — find any venue instantly; sort by deadline, tier, or track; hide past-due events with one click.
+- **⚙️ Truly zero-maintenance** — GitHub Actions + GitHub Pages do everything. No server, no database, no cost.
+- **📝 One file to rule them all** — add or edit a conference by changing a single human-readable YAML file.
+
+## 📸 Dashboard
+
+> Summary cards on top (next deadline, alerts, broken links) and a sortable, filterable, color-coded table below.
+
+<!-- Tip: take a screenshot of your live dashboard, drag it into this section on GitHub, and it'll embed automatically. A screenshot dramatically increases stars. -->
+
+[**→ Open the live dashboard**](https://akshatha-mohan.github.io/biomedical-ai-conference-tracker/)
+
+## 🏛️ Conferences tracked
+
+Medical imaging & biomedical AI venues including **MICCAI · ISBI · IPMI · MIDL · SPIE Medical Imaging · SASHIMI · AAPM · RSNA · EMBC · MLHC · ML4H**, plus the major general ML/CV conferences with growing medical tracks (**NeurIPS · ICML · ICLR · CVPR · ICCV · ECCV · WACV**).
+
+Missing your favorite? [**Add it in 2 minutes →**](#-contribute-a-conference)
+
+## 🚀 Use it yourself (fork in 5 minutes)
+
+Want your own copy? You'll have a live, self-updating dashboard in a few clicks:
+
+1. **[Fork this repo](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker/fork)** (or use it as a template).
+2. In your fork: **Settings → Actions → General → Workflow permissions → Read and write permissions**.
+3. **Settings → Pages → Source → GitHub Actions**.
+4. **Actions tab → "Update dashboard" → Run workflow.**
+5. Your dashboard goes live at `https://<your-username>.github.io/biomedical-ai-conference-tracker/`.
+
+That's it — it now refreshes every day at 06:00 UTC on its own.
+
+## 🤝 Contribute a conference
+
+This tracker is only as good as its data, and **adding a venue is the most valuable contribution you can make.** It takes two minutes:
+
+1. Open [`data/conferences.yml`](data/conferences.yml).
+2. Copy an existing entry and fill in the name, deadline, location, and official URL.
+3. Open a pull request.
+
+```yaml
+- name: My Awesome Workshop
+  acronym: MAW 2027
+  track: Medical Imaging AI
+  location: TBD
+  submission_deadline: 2027-03-15
+  deadline_confidence: estimated   # confirmed | estimated | tbd
+  conference_date: 2027-07-01
+  tier: A
+  url: https://example.org/maw2027
+  notes: Short description.
+```
+
+Bug reports, feature ideas, and corrections to deadlines are all welcome via [issues](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker/issues). 🙌
+
+## 🛠️ How it works
 
 ```
-data/conferences.yml      ← the one file you edit (the source of truth)
+data/conferences.yml      ← the one file you edit (source of truth)
         │
         ▼
-scripts/update.py         ← recomputes days-left / status / -7,-14 alerts, checks every link
-scripts/discover.py       ← best-effort scan for new biomedical venues (non-authoritative)
+scripts/update.py         ← recomputes days-left / status / alerts, checks every link
+scripts/discover.py       ← best-effort scan for new biomedical venues
         │
         ▼
-site/data.json            ← generated; the dashboard reads this
-site/index.html           ← the dashboard (summary cards + sortable/filterable table)
+site/data.json            ← generated daily; the dashboard reads this
+site/index.html           ← the dashboard (cards + sortable/filterable table)
         │
         ▼
-.github/workflows/update.yml  ← runs daily at 06:00 UTC, commits data.json, deploys Pages
+.github/workflows/update.yml  ← runs daily, commits data, deploys to GitHub Pages
 ```
 
-There is no live conference API, so the design is deliberately honest:
+There's no live conference API, so the design is deliberately honest: **countdowns and link-checks are fully reliable**, while **auto-discovery is best-effort** and never auto-merged — you review candidates and add the ones you want. Each deadline carries a confidence flag so estimated dates are never mistaken for confirmed ones.
 
-- **Countdowns and status are fully reliable** — recomputed from the dates in
-  `conferences.yml` every day.
-- **Link health is reliable** — every official URL is tested daily; broken ones
-  show a ⚠ badge and appear in the "Broken links" card. This is the fix for the
-  stale-link problem.
-- **Auto-discovery is best-effort.** It reads the community-maintained
-  `ai-deadlines` dataset and lists biomedical matches you don't already track,
-  in a separate "Discovered — review" panel. Nothing is added automatically;
-  you copy across the ones you want. Treat it as a prompt, not a source of truth.
-
-Each deadline carries a `deadline_confidence` flag — `confirmed` (from the
-official site), `estimated` (inferred from the venue's historical pattern, so
-verify), or `tbd` (not yet announced).
-
-## One-time setup
-
-You need [Git](https://git-scm.com/) and a GitHub account. The
-[`gh` CLI](https://cli.github.com/) makes this two commands; manual steps follow
-if you prefer the website.
-
-### Option A — with the `gh` CLI (fastest)
-
-```bash
-cd biomedical-ai-conference-tracker
-git init && git add . && git commit -m "Initial commit: biomedical AI conference tracker"
-
-# Creates the repo under your account and pushes in one go:
-gh repo create biomedical-ai-conference-tracker --public --source=. --push
-
-# Turn on Pages (served by GitHub Actions):
-gh api -X POST repos/:owner/biomedical-ai-conference-tracker/pages \
-  -f build_type=workflow
-```
-
-### Option B — manual
-
-1. Create a new **empty** public repo on github.com named
-   `biomedical-ai-conference-tracker` (no README/license — this folder has them).
-2. Push this folder:
-
-   ```bash
-   cd biomedical-ai-conference-tracker
-   git init && git add . && git commit -m "Initial commit"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/biomedical-ai-conference-tracker.git
-   git push -u origin main
-   ```
-
-3. In the repo: **Settings → Pages → Build and deployment → Source = GitHub Actions**.
-
-### Then
-
-- Go to the **Actions** tab and run **"Update dashboard"** once (the
-  `workflow_dispatch` button) to generate the first `data.json` and deploy.
-- Your dashboard will be live at
-  `https://<your-username>.github.io/biomedical-ai-conference-tracker/`.
-
-After that it refreshes itself every day at 06:00 UTC. Change the time by editing
-the `cron` line in `.github/workflows/update.yml`.
-
-## Day-to-day use
-
-- **Add or fix a conference:** edit `data/conferences.yml`, commit, push. The
-  push triggers a rebuild; the dashboard updates within a minute.
-- **Fix a broken link:** the dashboard's "Broken links" card names the offenders;
-  update their `url` in the YAML.
-- **Add a discovered venue:** copy the entry from the "Discovered" panel into
-  `conferences.yml`, fill in the fields, commit.
-
-## Run it locally (optional)
+### Run it locally (optional)
 
 ```bash
 pip install -r requirements.txt
@@ -104,9 +114,25 @@ python scripts/discover.py      # writes site/discovered.json (needs internet)
 python -m http.server -d site   # open http://localhost:8000
 ```
 
-## Data notes
+## 🗺️ Roadmap ideas
 
-Conference data was verified June 2026. Editions in 2027 are frequently
-unannounced at that point, so their deadlines are marked `estimated` or `tbd` —
-confirm against the official call for papers before relying on them. The daily
-link check will tell you when a `tbd` venue's site goes live.
+- iCal / Google Calendar export for upcoming deadlines
+- Email or Slack reminders at the 14-day and 7-day marks
+- Per-track and per-tier filtered views
+- Community-curated workshop sub-listings under each main conference
+
+Have an idea? [Open an issue](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker/issues) — or better yet, a PR.
+
+## 📄 License
+
+[MIT](LICENSE) — free to use, fork, and adapt. Attribution appreciated but not required.
+
+---
+
+<div align="center">
+
+**Built for the medical imaging & health AI research community.**
+
+If it's useful, [⭐ star it](https://github.com/Akshatha-Mohan/biomedical-ai-conference-tracker) and share it with your lab.
+
+</div>
