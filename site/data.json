@@ -1,27 +1,7 @@
 {
-  "generated_at": "2026-06-26T22:33:19+00:00",
+  "generated_at": "2026-06-26T22:46:10+00:00",
   "count": 19,
-  "broken_links": [
-    "SASHIMI 2026",
-    "SPIE MI 2027",
-    "ML4H 2026",
-    "WACV 2027",
-    "ICLR 2027",
-    "ISBI 2027",
-    "CVPR 2027",
-    "IPMI 2027",
-    "MICCAI 2027",
-    "ICCV 2027",
-    "MIDL 2026",
-    "EMBC 2026",
-    "ICML 2026",
-    "ECCV 2026",
-    "AAPM 2026",
-    "MICCAI 2026",
-    "MLHC 2026",
-    "RSNA 2026",
-    "NeurIPS 2026"
-  ],
+  "broken_links": [],
   "conferences": [
     {
       "name": "Simulation and Synthesis in Medical Imaging (MICCAI Workshop)",
@@ -39,8 +19,8 @@
       "days_left": 5,
       "alert_7": true,
       "alert_14": true,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 403
     },
     {
       "name": "SPIE Medical Imaging",
@@ -58,8 +38,8 @@
       "days_left": 38,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Machine Learning for Health Symposium (AHLI)",
@@ -77,8 +57,8 @@
       "days_left": 70,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Winter Conference on Applications of Computer Vision",
@@ -96,8 +76,8 @@
       "days_left": 74,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "International Conference on Learning Representations",
@@ -115,8 +95,8 @@
       "days_left": 90,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "IEEE International Symposium on Biomedical Imaging",
@@ -134,8 +114,8 @@
       "days_left": 111,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Computer Vision and Pattern Recognition",
@@ -153,8 +133,8 @@
       "days_left": 139,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Information Processing in Medical Imaging",
@@ -172,8 +152,8 @@
       "days_left": 172,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Medical Image Computing and Computer Assisted Intervention",
@@ -191,8 +171,8 @@
       "days_left": 239,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "International Conference on Computer Vision",
@@ -210,8 +190,8 @@
       "days_left": 254,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Medical Imaging with Deep Learning",
@@ -229,8 +209,8 @@
       "days_left": null,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "IEEE Engineering in Medicine and Biology Conference",
@@ -248,8 +228,8 @@
       "days_left": null,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "International Conference on Machine Learning",
@@ -267,8 +247,8 @@
       "days_left": null,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "European Conference on Computer Vision",
@@ -286,8 +266,8 @@
       "days_left": null,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "American Association of Physicists in Medicine Annual Meeting",
@@ -305,8 +285,8 @@
       "days_left": -150,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Medical Image Computing and Computer Assisted Intervention",
@@ -324,8 +304,8 @@
       "days_left": -120,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Machine Learning for Healthcare",
@@ -343,8 +323,8 @@
       "days_left": -70,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Radiological Society of North America Annual Meeting",
@@ -362,8 +342,8 @@
       "days_left": -51,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     },
     {
       "name": "Conference on Neural Information Processing Systems",
@@ -381,8 +361,8 @@
       "days_left": -51,
       "alert_7": false,
       "alert_14": false,
-      "link_ok": false,
-      "link_status": null
+      "link_ok": true,
+      "link_status": 200
     }
   ]
 }
