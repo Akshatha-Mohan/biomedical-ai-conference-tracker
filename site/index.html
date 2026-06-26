@@ -111,7 +111,6 @@
         <th data-key="submission_deadline">Deadline</th>
         <th data-key="days_left">Days Left</th>
         <th data-key="status">Status</th>
-        <th data-key="tier">Tier</th>
         <th data-key="link_ok">Link</th>
       </tr>
     </thead>
@@ -170,7 +169,6 @@ function render() {
       <td>${r.submission_deadline}<br><span class="tag ${r.deadline_confidence}">${r.deadline_confidence}</span></td>
       <td>${daysCell(r.days_left)}</td>
       <td><span class="pill ${STATUS_CLASS[r.status]}">${r.status}</span></td>
-      <td>${r.tier || "—"}</td>
       <td>${r.link_ok
         ? `<a href="${r.url}" target="_blank" rel="noopener" class="link-ok">open ↗</a>`
         : `<a href="${r.url}" target="_blank" rel="noopener" class="link-bad">⚠ broken</a>`}</td>
@@ -237,15 +235,4 @@ fetch("data.json?_=" + Date.now())
       `${data.count} venues · last auto-updated ${when}`;
     document.getElementById("footer").textContent =
       `Generated ${when}. Edit data/conferences.yml to add or correct entries; the dashboard rebuilds daily via GitHub Actions.`;
-    renderCards(data);
-    render();
-  })
-  .catch(() => { document.getElementById("subtitle").textContent = "Could not load data.json — run scripts/update.py first."; });
-
-fetch("discovered.json?_=" + Date.now())
-  .then(r => r.ok ? r.json() : null)
-  .then(renderDiscovered)
-  .catch(() => {});
-</script>
-</body>
-</html>
+    renderCard

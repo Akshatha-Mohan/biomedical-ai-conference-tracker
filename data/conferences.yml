@@ -15,7 +15,6 @@
 #                         - tbd:       not yet announced
 #   notification_date   YYYY-MM-DD or TBD
 #   conference_date     Start date of the event, YYYY-MM-DD or TBD
-#   tier                Your own priority label (A*, A, A-, B+, B, ...)
 #   url                 Official website (this is what the link-checker tests)
 #   notes               Free text
 #
@@ -32,7 +31,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: 2027-02-14
-    tier: B+
     url: https://spie.org/conferences-and-exhibitions/medical-imaging
     notes: Abstract deadline typically early August. Verify on the call for papers.
 
@@ -44,7 +42,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: 2027-05-25
-    tier: A
     url: https://biomedicalimaging.org/2027/
     notes: Strong on methodology. Deadline usually mid-to-late October.
 
@@ -56,7 +53,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: 2027-06-27
-    tier: A
     url: https://2027.ipmi-conf.org/
     notes: Small, highly selective, biennial. Lake Stukely retreat format.
 
@@ -68,7 +64,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: TBD
-    tier: A*
     url: https://miccai.org/
     notes: Top venue for medical imaging AI. 2027 site not yet live.
 
@@ -80,7 +75,6 @@ conferences:
     deadline_confidence: confirmed
     notification_date: 2026-06-12
     conference_date: 2026-09-27
-    tier: A*
     url: https://conferences.miccai.org/2026/
     notes: Deadline passed. Kept for reference / workshop planning.
 
@@ -92,7 +86,6 @@ conferences:
     deadline_confidence: tbd
     notification_date: TBD
     conference_date: TBD
-    tier: A
     url: https://2026.midl.io/
     notes: Deep-learning focused, full + short papers. 2026 deadline has passed.
 
@@ -104,7 +97,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: 2026-09-27
-    tier: B+
     url: https://conferences.miccai.org/2026/en/WORKSHOPS.html
     notes: MICCAI workshop on synthesis & simulation. Confirm exact date on MICCAI workshops page.
 
@@ -117,7 +109,6 @@ conferences:
     deadline_confidence: confirmed
     notification_date: TBD
     conference_date: 2026-07-19
-    tier: B
     url: https://www.aapm.org/annual/
     notes: Joint AAPM | COMP meeting. Deadline passed.
 
@@ -129,7 +120,6 @@ conferences:
     deadline_confidence: confirmed
     notification_date: TBD
     conference_date: 2026-11-29
-    tier: B+
     url: https://www.rsna.org/annual-meeting
     notes: Large clinical radiology conference. Abstract deadline passed.
 
@@ -141,7 +131,6 @@ conferences:
     deadline_confidence: tbd
     notification_date: TBD
     conference_date: 2026-07-26
-    tier: B
     url: https://embc.embs.org/2026/
     notes: Broad biomedical engineering. 2026 paper deadline passed; watch for EMBC 2027 call.
 
@@ -154,7 +143,6 @@ conferences:
     deadline_confidence: confirmed
     notification_date: 2026-07-03
     conference_date: 2026-08-12
-    tier: A-
     url: https://www.mlhc.org/
     notes: Clinical ML focus, archival research track. Deadline passed.
 
@@ -166,7 +154,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: TBD
-    tier: A-
     url: https://ahli.cc/ml4h/
     notes: Held in December, co-located near NeurIPS. Deadline usually early September.
 
@@ -179,7 +166,6 @@ conferences:
     deadline_confidence: confirmed
     notification_date: TBD
     conference_date: 2026-12-06
-    tier: A*
     url: https://neurips.cc/Conferences/2026
     notes: Methodology papers. Deadline passed for 2026.
 
@@ -191,7 +177,6 @@ conferences:
     deadline_confidence: tbd
     notification_date: TBD
     conference_date: 2026-07-06
-    tier: A*
     url: https://icml.cc/Conferences/2026
     notes: Top ML for methodology. 2026 deadline passed.
 
@@ -203,7 +188,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: TBD
-    tier: A*
     url: https://iclr.cc/
     notes: Representation learning. Deadline usually late September.
 
@@ -215,7 +199,6 @@ conferences:
     deadline_confidence: estimated
     notification_date: TBD
     conference_date: 2027-06-20
-    tier: A*
     url: https://cvpr.thecvf.com/
     notes: Top CV; growing medical imaging track. Deadline usually mid-November.
 
@@ -227,7 +210,6 @@ conferences:
     deadline_confidence: tbd
     notification_date: TBD
     conference_date: 2026-09-08
-    tier: A*
     url: https://eccv.ecva.net/
     notes: Biennial. 2026 deadline passed.
 
@@ -238,19 +220,4 @@ conferences:
     submission_deadline: 2027-03-07
     deadline_confidence: estimated
     notification_date: TBD
-    conference_date: 2027-10-02
-    tier: A*
-    url: https://iccv.thecvf.com/
-    notes: Biennial, odd years. Deadline usually early March.
-
-  - name: Winter Conference on Applications of Computer Vision
-    acronym: WACV 2027
-    track: Computer Vision
-    location: Orlando, FL, USA
-    submission_deadline: 2026-09-08
-    deadline_confidence: estimated
-    notification_date: TBD
-    conference_date: 2027-01-04
-    tier: A-
-    url: https://wacv.thecvf.com/Conferences/2027/
-    notes: Applications focus; two submission rounds. Confirm round dates on CFP.
+    conf

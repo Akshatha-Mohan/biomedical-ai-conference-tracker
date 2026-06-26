@@ -89,7 +89,6 @@ def build_record(entry, today):
         "deadline_confidence": entry.get("deadline_confidence", "tbd"),
         "notification_date": as_text(entry.get("notification_date")),
         "conference_date": as_text(entry.get("conference_date")),
-        "tier": entry.get("tier", ""),
         "url": entry["url"],
         "notes": entry.get("notes", ""),
         "status": status,
@@ -117,10 +116,4 @@ def main():
         "conferences": records,
     }
 
-    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT_FILE.write_text(json.dumps(payload, indent=2))
-    return payload
-
-
-if __name__ == "__main__":
-    main()
+    OUTPUT_FILE.p
