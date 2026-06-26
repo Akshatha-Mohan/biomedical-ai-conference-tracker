@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T22:46:10+00:00",
+  "generated_at": "2026-06-26T22:51:39+00:00",
   "count": 19,
   "broken_links": [],
   "conferences": [
@@ -58,7 +58,7 @@
       "alert_7": false,
       "alert_14": false,
       "link_ok": true,
-      "link_status": 200
+      "link_status": 403
     },
     {
       "name": "Winter Conference on Applications of Computer Vision",
