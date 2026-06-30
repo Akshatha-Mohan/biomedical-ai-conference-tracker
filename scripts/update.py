@@ -10,6 +10,7 @@ Run: python scripts/update.py
 from datetime import date, datetime, timezone
 from pathlib import Path
 import json
+import socket
 import urllib.request
 import urllib.error
 
@@ -57,7 +58,15 @@ def classify(deadline, today):
 
 
 def check_link(url):
-    """Return (ok, status) for a URL. ok is False when it is unreachable."""
+    """Classify a URL as 'ok', 'broken', or 'unknown'.
+
+    Only definitive failures are called 'broken', so a transient blip can't
+    raise a false alarm on a feature whose whole value is trustworthiness:
+
+      ok       2xx, or 403/405 (page exists but blocks bots)
+      broken   404/410, or a real DNS / connection failure
+      unknown  timeouts, 5xx, 429, and anything else ambiguous
+    """
     request = urllib.request.Request(
         url,
         method="GET",
@@ -65,20 +74,25 @@ def check_link(url):
     )
     try:
         with urllib.request.urlopen(request, timeout=LINK_TIMEOUT_SECONDS) as response:
-            return True, response.status
+            return "ok", response.status
     except urllib.error.HTTPError as error:
-        # The server answered, just not with 2xx. 403/405 usually means the page
-        # exists but blocks bots, so treat those as reachable.
-        ok = error.code in (403, 405)
-        return ok, error.code
-    except urllib.error.URLError:
-        return False, None
+        if error.code in (403, 405):
+            return "ok", error.code
+        if error.code in (404, 410):
+            return "broken", error.code
+        return "unknown", error.code
+    except (TimeoutError, socket.timeout):
+        return "unknown", None
+    except urllib.error.URLError as error:
+        if isinstance(error.reason, (TimeoutError, socket.timeout)):
+            return "unknown", None
+        return "broken", None
 
 
 def build_record(entry, today):
     deadline = parse_date(entry.get("submission_deadline"))
     status, days_left = classify(deadline, today)
-    link_ok, link_status = check_link(entry["url"])
+    link_state, link_status = check_link(entry["url"])
 
     return {
         "name": entry["name"],
@@ -95,7 +109,7 @@ def build_record(entry, today):
         "days_left": days_left,
         "alert_7": days_left is not None and 0 <= days_left <= 7,
         "alert_14": days_left is not None and 0 <= days_left <= 14,
-        "link_ok": link_ok,
+        "link_state": link_state,
         "link_status": link_status,
     }
 
@@ -112,7 +126,7 @@ def main():
     payload = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "count": len(records),
-        "broken_links": [r["acronym"] for r in records if not r["link_ok"]],
+        "broken_links": [r["acronym"] for r in records if r["link_state"] == "broken"],
         "conferences": records,
     }
 

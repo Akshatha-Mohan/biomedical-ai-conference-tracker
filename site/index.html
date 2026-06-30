@@ -72,6 +72,7 @@
 
   .link-bad { color: var(--red); font-size: 12px; }
   .link-ok { color: var(--green); font-size: 12px; }
+  .link-unknown { color: var(--amber); font-size: 12px; }
 
   .section-title { margin: 36px 0 12px; font-size: 16px; }
   .discovered { background: var(--panel); border: 1px dashed var(--border); border-radius: 12px; padding: 16px; }
@@ -130,6 +131,17 @@ const STATUS_CLASS = { "Past Due": "past", "Upcoming": "upcoming", "Far Out": "f
 let rows = [];
 let sortKey = "days_left", sortAsc = true;
 
+// Escape untrusted text before it enters innerHTML. The discovered panel pulls
+// from an external dataset that can contain HTML (its notes carry <a> tags).
+function esc(s) {
+  const d = document.createElement("div");
+  d.textContent = (s == null ? "" : String(s));
+  return d.innerHTML;
+}
+function safeUrl(u) {
+  return (typeof u === "string" && /^https?:\/\//i.test(u)) ? u : "";
+}
+
 function daysCell(d) {
   if (d === null) return '<span class="days">—</span>';
   const cls = d < 0 ? "neg" : d <= 14 ? "soon" : "ok";
@@ -168,9 +180,11 @@ function render() {
       <td>${r.submission_deadline}<br><span class="tag ${r.deadline_confidence}">${r.deadline_confidence}</span></td>
       <td>${daysCell(r.days_left)}</td>
       <td><span class="pill ${STATUS_CLASS[r.status]}">${r.status}</span></td>
-      <td>${r.link_ok
-        ? `<a href="${r.url}" target="_blank" rel="noopener" class="link-ok">open ↗</a>`
-        : `<a href="${r.url}" target="_blank" rel="noopener" class="link-bad">⚠ broken</a>`}</td>
+      <td>${r.link_state === "broken"
+        ? `<a href="${r.url}" target="_blank" rel="noopener" class="link-bad">⚠ broken</a>`
+        : r.link_state === "unknown"
+        ? `<a href="${r.url}" target="_blank" rel="noopener" class="link-unknown">? unverified</a>`
+        : `<a href="${r.url}" target="_blank" rel="noopener" class="link-ok">open ↗</a>`}</td>
     </tr>`).join("");
 }
 
@@ -208,13 +222,16 @@ function renderDiscovered(data) {
   const el = document.getElementById("discovered");
   if (!c.length) { el.innerHTML = '<span class="muted">No new biomedical venues found in the latest run.</span>'; return; }
   el.innerHTML = `<div class="muted" style="margin-bottom:10px;">${c.length} candidate venue(s) matched biomedical keywords and are not in your list. Review and copy any you want into <code>data/conferences.yml</code>.</div>` +
-    c.map(x => `<div style="padding:6px 0;border-bottom:1px solid var(--border);">
-      <strong>${x.title || x.full_name}</strong> ${x.year || ""} ·
-      <span class="muted">${x.full_name || ""}</span> ·
-      deadline ${x.submission_deadline} ·
-      ${x.url ? `<a href="${x.url}" target="_blank" rel="noopener">site ↗</a>` : "no link"}
-      <span class="tag">matched: ${x.matched_keyword}</span>
-    </div>`).join("");
+    c.map(x => {
+      const url = safeUrl(x.url);
+      return `<div style="padding:6px 0;border-bottom:1px solid var(--border);">
+      <strong>${esc(x.title || x.full_name)}</strong> ${esc(x.year)} ·
+      <span class="muted">${esc(x.full_name)}</span> ·
+      deadline ${esc(x.submission_deadline)} ·
+      ${url ? `<a href="${url}" target="_blank" rel="noopener">site ↗</a>` : "no link"}
+      <span class="tag">matched: ${esc(x.matched_keyword)}</span>
+    </div>`;
+    }).join("");
 }
 
 document.querySelectorAll("th").forEach(th => th.addEventListener("click", () => {
