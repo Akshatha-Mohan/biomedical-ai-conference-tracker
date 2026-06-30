@@ -1,3 +1,8 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Generated fresh by the daily GitHub Action and deployed as a Pages artifact.
+# Not tracked in git, so the repo never carries stale snapshots.
+site/data.json
+site/discovered.json
