@@ -133,8 +133,7 @@ let sortKey = "days_left", sortAsc = true;
 function daysCell(d) {
   if (d === null) return '<span class="days">—</span>';
   const cls = d < 0 ? "neg" : d <= 14 ? "soon" : "ok";
-  const txt = d < 0 ? d + " d" : d + " d";
-  return `<span class="days ${cls}">${txt}</span>`;
+  return `<span class="days ${cls}">${d} d</span>`;
 }
 
 function render() {
@@ -235,4 +234,15 @@ fetch("data.json?_=" + Date.now())
       `${data.count} venues · last auto-updated ${when}`;
     document.getElementById("footer").textContent =
       `Generated ${when}. Edit data/conferences.yml to add or correct entries; the dashboard rebuilds daily via GitHub Actions.`;
-    renderCard
+    renderCards(data);
+    render();
+  })
+  .catch(() => { document.getElementById("subtitle").textContent = "Could not load data.json — run scripts/update.py first."; });
+
+fetch("discovered.json?_=" + Date.now())
+  .then(r => r.ok ? r.json() : null)
+  .then(renderDiscovered)
+  .catch(() => {});
+</script>
+</body>
+</html>
