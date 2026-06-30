@@ -116,4 +116,10 @@ def main():
         "conferences": records,
     }
 
-    OUTPUT_FILE.p
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT_FILE.write_text(json.dumps(payload, indent=2))
+    return payload
+
+
+if __name__ == "__main__":
+    main()

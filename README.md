@@ -33,7 +33,7 @@ This is a focused, **biomedical-only** tracker that you own. It lives in a GitHu
 - **🔗 Automatic broken-link detection** — every official URL is tested daily; dead links get a ⚠ badge and a count on the dashboard, so the data never silently rots.
 - **🔍 New-venue discovery** — a daily best-effort scan of community deadline datasets surfaces biomedical conferences you're not tracking yet, in a separate "review & add" panel.
 - **🎯 Confidence flags** — each deadline is tagged `confirmed`, `estimated`, or `tbd`, so you always know what to double-check before relying on it.
-- **🔎 Search, sort & filter** — find any venue instantly; sort by deadline, tier, or track; hide past-due events with one click.
+- **🔎 Search, sort & filter** — find any venue instantly; sort by deadline, track, or status; hide past-due events with one click.
 - **⚙️ Truly zero-maintenance** — GitHub Actions + GitHub Pages do everything. No server, no database, no cost.
 - **📝 One file to rule them all** — add or edit a conference by changing a single human-readable YAML file.
 
