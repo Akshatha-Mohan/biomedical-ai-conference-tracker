@@ -1,25 +1,19 @@
-# Biomedical AI Conference & Workshop Tracker — source of truth
+# Biomedical AI Conference & Workshop Tracker -- source of truth
 #
-# This is the ONE file you edit by hand. The daily GitHub Action reads it,
-# recomputes countdowns/status, checks every link, and regenerates site/data.json.
+# Edit this file by hand. The daily GitHub Action reads it, recomputes
+# countdowns/status, checks every link, and regenerates site/data.json.
 #
-# Field reference:
-#   name                Full conference name
-#   acronym             Short name + year (must be unique)
-#   track               Domain / topic
-#   location            City, Country  (or "TBD")
-#   submission_deadline Paper/abstract deadline, YYYY-MM-DD  (or "TBD")
-#   deadline_confidence confirmed | estimated | tbd
-#                         - confirmed: taken from the official site
-#                         - estimated: inferred from the venue's historical pattern; VERIFY
-#                         - tbd:       not yet announced
-#   notification_date   YYYY-MM-DD or TBD
-#   conference_date     Start date of the event, YYYY-MM-DD or TBD
-#   url                 Official website (this is what the link-checker tests)
-#   notes               Free text
+# Fields:
+#   name, acronym (unique), track, location
+#   submission_deadline   YYYY-MM-DD or TBD
+#   deadline_confidence   confirmed | estimated | tbd
+#   notification_date     YYYY-MM-DD or TBD
+#   conference_date       YYYY-MM-DD or TBD
+#   url                   official site (this is what the link-checker tests)
+#   notes                 free text
 #
-# Dates verified June 2026. 2027 editions are often unannounced — those are
-# marked "estimated"/"tbd" so you know to confirm before relying on them.
+# Dates verified June 2026. 2027 editions are often unannounced -- those are
+# marked estimated/tbd so you know to confirm before relying on them.
 
 conferences:
   # ---------------------------------------------------------------- Medical imaging / biomedical AI
@@ -220,4 +214,17 @@ conferences:
     submission_deadline: 2027-03-07
     deadline_confidence: estimated
     notification_date: TBD
-    conf
+    conference_date: 2027-10-02
+    url: https://iccv.thecvf.com/
+    notes: Biennial, odd years. Deadline usually early March.
+
+  - name: Winter Conference on Applications of Computer Vision
+    acronym: WACV 2027
+    track: Computer Vision
+    location: Orlando, FL, USA
+    submission_deadline: 2026-09-08
+    deadline_confidence: estimated
+    notification_date: TBD
+    conference_date: 2027-01-04
+    url: https://wacv.thecvf.com/Conferences/2027/
+    notes: Applications focus; two submission rounds. Confirm round dates on CFP.

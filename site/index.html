@@ -15,18 +15,11 @@
     --amber: #fbbf24;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  }
-  header {
-    background: linear-gradient(90deg, #111c33, #1e293b);
-    border-bottom: 1px solid var(--border); padding: 20px 28px;
-  }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  header { background: linear-gradient(90deg, #111c33, #1e293b); border-bottom: 1px solid var(--border); padding: 20px 28px; }
   header h1 { margin: 0; font-size: 20px; letter-spacing: .2px; }
   header p { margin: 4px 0 0; color: var(--muted); font-size: 13px; }
   main { padding: 24px 28px 60px; max-width: 1400px; margin: 0 auto; }
-
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 28px; }
   .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
   .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .6px; }
@@ -34,14 +27,9 @@
   .card .sub { color: var(--muted); font-size: 13px; margin-top: 4px; }
   .card.alert .big { color: var(--amber); }
   .card.broken .big { color: var(--red); }
-
   .controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
-  .controls input, .controls select {
-    background: var(--panel-2); color: var(--text); border: 1px solid var(--border);
-    border-radius: 8px; padding: 8px 12px; font-size: 14px;
-  }
+  .controls input, .controls select { background: var(--panel-2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; font-size: 14px; }
   .controls input { min-width: 240px; }
-
   table { width: 100%; border-collapse: collapse; background: var(--panel); border-radius: 12px; overflow: hidden; }
   th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border); font-size: 14px; vertical-align: top; }
   th { background: var(--panel-2); color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .5px; cursor: pointer; user-select: none; white-space: nowrap; }
@@ -49,31 +37,25 @@
   tbody tr:hover { background: #223049; }
   td a { color: var(--blue); text-decoration: none; }
   td a:hover { text-decoration: underline; }
-
   .pill { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
   .pill.past { background: var(--red-bg); color: var(--red); }
   .pill.upcoming { background: var(--green-bg); color: var(--green); }
   .pill.farout { background: var(--blue-bg); color: var(--blue); }
   .pill.tbd { background: var(--gray-bg); color: var(--gray); }
-
   .days { font-weight: 700; }
   .days.neg { color: var(--red); }
   .days.soon { color: var(--amber); }
   .days.ok { color: var(--green); }
-
   .conf { font-weight: 600; }
   .acr { color: var(--muted); font-size: 12px; }
   .conf-meta { color: var(--muted); font-size: 12px; margin-top: 2px; }
-
   .tag { font-size: 11px; padding: 2px 7px; border-radius: 6px; border: 1px solid var(--border); color: var(--muted); }
   .tag.estimated { color: var(--amber); border-color: #5a4711; }
   .tag.tbd { color: var(--gray); }
   .tag.confirmed { color: var(--green); border-color: #1f5132; }
-
   .link-bad { color: var(--red); font-size: 12px; }
   .link-ok { color: var(--green); font-size: 12px; }
   .link-unknown { color: var(--amber); font-size: 12px; }
-
   .section-title { margin: 36px 0 12px; font-size: 16px; }
   .discovered { background: var(--panel); border: 1px dashed var(--border); border-radius: 12px; padding: 16px; }
   .discovered .muted { color: var(--muted); font-size: 13px; }
@@ -85,10 +67,8 @@
   <h1>🧠 Biomedical AI — Conference &amp; Deadline Tracker</h1>
   <p id="subtitle">Loading…</p>
 </header>
-
 <main>
   <section class="cards" id="cards"></section>
-
   <div class="controls">
     <input id="search" type="search" placeholder="Search name, track, location…" />
     <select id="statusFilter">
@@ -102,7 +82,6 @@
       <input type="checkbox" id="hidePast" /> Hide past due
     </label>
   </div>
-
   <table id="table">
     <thead>
       <tr>
@@ -112,27 +91,22 @@
         <th data-key="submission_deadline">Deadline</th>
         <th data-key="days_left">Days Left</th>
         <th data-key="status">Status</th>
-        <th data-key="link_ok">Link</th>
+        <th data-key="link_state">Link</th>
       </tr>
     </thead>
     <tbody id="tbody"></tbody>
   </table>
-
   <h2 class="section-title">🔎 Discovered — review &amp; add manually</h2>
   <div class="discovered" id="discovered">
     <span class="muted">No discovery data yet. The daily job populates this.</span>
   </div>
-
   <footer id="footer"></footer>
 </main>
-
 <script>
 const STATUS_CLASS = { "Past Due": "past", "Upcoming": "upcoming", "Far Out": "farout", "TBD": "tbd" };
 let rows = [];
 let sortKey = "days_left", sortAsc = true;
 
-// Escape untrusted text before it enters innerHTML. The discovered panel pulls
-// from an external dataset that can contain HTML (its notes carry <a> tags).
 function esc(s) {
   const d = document.createElement("div");
   d.textContent = (s == null ? "" : String(s));
@@ -141,11 +115,17 @@ function esc(s) {
 function safeUrl(u) {
   return (typeof u === "string" && /^https?:\/\//i.test(u)) ? u : "";
 }
-
 function daysCell(d) {
   if (d === null) return '<span class="days">—</span>';
   const cls = d < 0 ? "neg" : d <= 14 ? "soon" : "ok";
   return `<span class="days ${cls}">${d} d</span>`;
+}
+function linkCell(r) {
+  const url = safeUrl(r.url);
+  if (!url) return "—";
+  if (r.link_state === "broken") return `<a href="${url}" target="_blank" rel="noopener" class="link-bad">⚠ broken</a>`;
+  if (r.link_state === "unknown") return `<a href="${url}" target="_blank" rel="noopener" class="link-unknown">? unverified</a>`;
+  return `<a href="${url}" target="_blank" rel="noopener" class="link-ok">open ↗</a>`;
 }
 
 function render() {
@@ -168,23 +148,18 @@ function render() {
     return (x < y ? -1 : x > y ? 1 : 0) * (sortAsc ? 1 : -1);
   });
 
-  const tbody = document.getElementById("tbody");
-  tbody.innerHTML = list.map(r => `
+  document.getElementById("tbody").innerHTML = list.map(r => `
     <tr>
       <td>
-        <div class="conf">${r.name} <span class="acr">${r.acronym}</span></div>
-        ${r.notes ? `<div class="conf-meta">${r.notes}</div>` : ""}
+        <div class="conf">${esc(r.name)} <span class="acr">${esc(r.acronym)}</span></div>
+        ${r.notes ? `<div class="conf-meta">${esc(r.notes)}</div>` : ""}
       </td>
-      <td>${r.track}</td>
-      <td>${r.location}</td>
-      <td>${r.submission_deadline}<br><span class="tag ${r.deadline_confidence}">${r.deadline_confidence}</span></td>
+      <td>${esc(r.track)}</td>
+      <td>${esc(r.location)}</td>
+      <td>${esc(r.submission_deadline)}<br><span class="tag ${r.deadline_confidence}">${esc(r.deadline_confidence)}</span></td>
       <td>${daysCell(r.days_left)}</td>
-      <td><span class="pill ${STATUS_CLASS[r.status]}">${r.status}</span></td>
-      <td>${r.link_state === "broken"
-        ? `<a href="${r.url}" target="_blank" rel="noopener" class="link-bad">⚠ broken</a>`
-        : r.link_state === "unknown"
-        ? `<a href="${r.url}" target="_blank" rel="noopener" class="link-unknown">? unverified</a>`
-        : `<a href="${r.url}" target="_blank" rel="noopener" class="link-ok">open ↗</a>`}</td>
+      <td><span class="pill ${STATUS_CLASS[r.status]}">${esc(r.status)}</span></td>
+      <td>${linkCell(r)}</td>
     </tr>`).join("");
 }
 
@@ -193,28 +168,11 @@ function renderCards(data) {
   const alerts = rows.filter(r => r.alert_14);
   const next = upcoming.slice().sort((a,b) => a.days_left - b.days_left)[0];
   const broken = data.broken_links || [];
-
   document.getElementById("cards").innerHTML = `
-    <div class="card">
-      <div class="label">Next deadline</div>
-      <div class="big">${next ? next.days_left + " days" : "—"}</div>
-      <div class="sub">${next ? next.acronym + " · " + next.submission_deadline : "nothing upcoming"}</div>
-    </div>
-    <div class="card">
-      <div class="label">Upcoming (≤120 days)</div>
-      <div class="big">${upcoming.length}</div>
-      <div class="sub">${rows.length} conferences tracked</div>
-    </div>
-    <div class="card alert">
-      <div class="label">Alerts (≤14 days)</div>
-      <div class="big">${alerts.length}</div>
-      <div class="sub">${alerts.map(a => a.acronym).join(", ") || "all clear"}</div>
-    </div>
-    <div class="card broken">
-      <div class="label">Broken links</div>
-      <div class="big">${broken.length}</div>
-      <div class="sub">${broken.join(", ") || "all links healthy"}</div>
-    </div>`;
+    <div class="card"><div class="label">Next deadline</div><div class="big">${next ? next.days_left + " days" : "—"}</div><div class="sub">${next ? esc(next.acronym) + " · " + esc(next.submission_deadline) : "nothing upcoming"}</div></div>
+    <div class="card"><div class="label">Upcoming (≤120 days)</div><div class="big">${upcoming.length}</div><div class="sub">${rows.length} conferences tracked</div></div>
+    <div class="card alert"><div class="label">Alerts (≤14 days)</div><div class="big">${alerts.length}</div><div class="sub">${alerts.map(a => esc(a.acronym)).join(", ") || "all clear"}</div></div>
+    <div class="card broken"><div class="label">Broken links</div><div class="big">${broken.length}</div><div class="sub">${broken.map(esc).join(", ") || "all links healthy"}</div></div>`;
 }
 
 function renderDiscovered(data) {
@@ -225,12 +183,12 @@ function renderDiscovered(data) {
     c.map(x => {
       const url = safeUrl(x.url);
       return `<div style="padding:6px 0;border-bottom:1px solid var(--border);">
-      <strong>${esc(x.title || x.full_name)}</strong> ${esc(x.year)} ·
-      <span class="muted">${esc(x.full_name)}</span> ·
-      deadline ${esc(x.submission_deadline)} ·
-      ${url ? `<a href="${url}" target="_blank" rel="noopener">site ↗</a>` : "no link"}
-      <span class="tag">matched: ${esc(x.matched_keyword)}</span>
-    </div>`;
+        <strong>${esc(x.title || x.full_name)}</strong> ${esc(x.year)} ·
+        <span class="muted">${esc(x.full_name)}</span> ·
+        deadline ${esc(x.submission_deadline)} ·
+        ${url ? `<a href="${url}" target="_blank" rel="noopener">site ↗</a>` : "no link"}
+        <span class="tag">matched: ${esc(x.matched_keyword)}</span>
+      </div>`;
     }).join("");
 }
 
@@ -247,10 +205,8 @@ fetch("data.json?_=" + Date.now())
   .then(data => {
     rows = data.conferences;
     const when = new Date(data.generated_at).toLocaleString();
-    document.getElementById("subtitle").textContent =
-      `${data.count} venues · last auto-updated ${when}`;
-    document.getElementById("footer").textContent =
-      `Generated ${when}. Edit data/conferences.yml to add or correct entries; the dashboard rebuilds daily via GitHub Actions.`;
+    document.getElementById("subtitle").textContent = `${data.count} venues · last auto-updated ${when}`;
+    document.getElementById("footer").textContent = `Generated ${when}. Edit data/conferences.yml to add or correct entries; the dashboard rebuilds daily via GitHub Actions.`;
     renderCards(data);
     render();
   })

@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/sessions/blissful-friendly-darwin/mnt/biomedical-ai-conference-tracker/scripts/update.py", line 134, in <module>
+    main()
+  File "/sessions/blissful-friendly-darwin/mnt/biomedical-ai-conference-tracker/scripts/update.py", line 115, in main
+    conferences = yaml.safe_load(DATA_FILE.read_text())["conferences"]
+  File "/usr/local/lib/python3.10/dist-packages/yaml/__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+  File "/usr/local/lib/python3.10/dist-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 36, in get_single_node
+    document = self.compose_document()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 111, in compose_sequence_node
+    node.value.append(self.compose_node(node, index))
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+  File "/usr/local/lib/python3.10/dist-packages/yaml/composer.py", line 127, in compose_mapping_node
+    while not self.check_event(MappingEndEvent):
+  File "/usr/local/lib/python3.10/dist-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/parser.py", line 428, in parse_block_mapping_key
+    if self.check_token(KeyToken):
+  File "/usr/local/lib/python3.10/dist-packages/yaml/scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/scanner.py", line 173, in fetch_more_tokens
+    return self.fetch_stream_end()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/scanner.py", line 377, in fetch_stream_end
+    self.remove_possible_simple_key()
+  File "/usr/local/lib/python3.10/dist-packages/yaml/scanner.py", line 318, in remove_possible_simple_key
+    raise ScannerError("while scanning a simple key", key.mark,
+yaml.scanner.ScannerError: while scanning a simple key
+  in "<unicode string>", line 223, column 5:
+        conf
+        ^
+could not find expected ':'
+  in "<unicode string>", line 223, column 9:
+        conf
+            ^

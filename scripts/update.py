@@ -26,11 +26,7 @@ LINK_TIMEOUT_SECONDS = 15
 
 
 def parse_date(value):
-    """Return a date for an ISO 'YYYY-MM-DD' value, or None for 'TBD'/blank.
-
-    PyYAML already turns bare YYYY-MM-DD values into date objects; strings and
-    dates are both accepted here.
-    """
+    """Return a date for an ISO 'YYYY-MM-DD' value, or None for 'TBD'/blank."""
     if isinstance(value, date):
         return value
     if not value or str(value).strip().upper() == "TBD":
@@ -119,7 +115,6 @@ def main():
     conferences = yaml.safe_load(DATA_FILE.read_text())["conferences"]
     records = [build_record(entry, today) for entry in conferences]
 
-    # Sort so the most urgent upcoming deadlines come first, TBD next, past last.
     order = {"Upcoming": 0, "Far Out": 1, "TBD": 2, "Past Due": 3}
     records.sort(key=lambda r: (order[r["status"]], r["days_left"] if r["days_left"] is not None else 10**6))
 
